@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QuizQuest 🚀</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#fff;background:#070522;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 20% 20%,#392070 0,transparent 28%),radial-gradient(circle at 80% 10%,#173a70 0,transparent 25%),linear-gradient(135deg,#050318,#0b0730 55%,#12052d)}
+body:after{content:"✦   ·   ✧      ·   ✦   ·       ✧      ·   ✦";position:fixed;inset:0;z-index:-1;color:#fff;opacity:.28;font-size:26px;line-height:2.8;word-spacing:34px;pointer-events:none}
+header{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:rgba(7,5,34,.88);backdrop-filter:blur(14px);border-bottom:1px solid #ffffff22}
+.logo{font-weight:900;font-size:26px;letter-spacing:.5px}.logo span{color:#8de8ff}
+nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}nav button,.coins{border:1px solid #ffffff25;background:#ffffff0d;color:#fff;padding:10px 15px;border-radius:14px;font-weight:800;cursor:pointer}nav button:hover{background:#ffffff1c}.coins{color:#ffe66d}
+main{max-width:1150px;margin:auto;padding:45px 22px 80px}.hero{text-align:center;padding:35px 10px 55px}.hero h1{font-size:clamp(48px,9vw,92px);margin:0;background:linear-gradient(90deg,#fff,#8de8ff,#dba7ff,#fff);-webkit-background-clip:text;color:transparent}.hero p{font-size:20px;color:#c9c6e9}.cta{background:linear-gradient(135deg,#7c5cff,#25c7ff);border:0;color:#fff;padding:15px 25px;border-radius:16px;font-size:17px;font-weight:900;cursor:pointer;box-shadow:0 10px 35px #25c7ff33}
+.section{margin:30px 0}.section h2{font-size:30px;margin-bottom:15px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}.card{padding:20px;border:1px solid #ffffff1f;border-radius:22px;background:linear-gradient(160deg,#ffffff12,#ffffff05);box-shadow:0 12px 35px #0004}.card h3{margin:7px 0}.icon{font-size:38px}.muted{color:#aaa8ca}.pack{position:relative;overflow:hidden}.pack:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;right:-20px;top:-25px;background:#ffffff12}.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#ffffff12;color:#9eeaff;font-size:12px;font-weight:800}.season{border-color:#ff8fbd66;background:linear-gradient(145deg,#34143b,#171036)}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:20;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.box{max-width:520px;width:100%;background:#100b36;border:1px solid #ffffff22;border-radius:24px;padding:25px;box-shadow:0 20px 70px #000}.answers{display:grid;gap:10px;margin-top:18px}.answers button{padding:14px;border-radius:13px;border:1px solid #ffffff22;background:#ffffff0c;color:#fff;text-align:left;cursor:pointer}.answers button:hover{background:#ffffff18}.close{float:right;background:none;border:0;color:#aaa;font-size:24px;cursor:pointer}
+footer{text-align:center;color:#8885aa;padding:25px}
+@media(max-width:700px){header{padding:12px 14px;flex-direction:column;gap:10px}.hero{padding-top:20px}nav button{padding:8px 10px;font-size:12px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🚀 Quiz<span>Quest</span></div>
+  <nav>
+    <button onclick="show('HOME')">HOME</button>
+    <button onclick="show('CREATE')">CREATE</button>
+    <button onclick="show('LOCKER')">LOCKER</button>
+    <button onclick="startQuiz()">QUIZ</button>
+    <button onclick="show('QUIZMART')">QUIZMART</button>
+  </nav>
+  <div class="coins">🪙 <span id="coinCount">250</span> Quiz Coins</div>
+</header>
+
+<main>
+<section class="hero">
+  <div style="font-size:58px">🌎 🪐 ☄️ 🌙 ⭐</div>
+  <h1>QuizQuest</h1>
+  <p>Explore. Answer. Collect. Become a QuizQuest explorer.</p>
+  <button class="cta" onclick="startQuiz()">🚀 START QUIZ</button>
+</section>
+
+<section class="section">
+<h2>🌌 Explore QuizQuest</h2>
+<div class="grid">
+  <div class="card"><div class="icon">🎮</div><h3>Quiz Game</h3><p class="muted">Blast off into quick quiz rounds and earn Quiz Coins.</p></div>
+  <div class="card"><div class="icon">✨</div><h3>Quizits</h3><p class="muted">Collect special Quizits as you explore the galaxy.</p></div>
+  <div class="card"><div class="icon">👥</div><h3>Multiplayer</h3><p class="muted">Play quiz battles with friends.</p></div>
+  <div class="card"><div class="icon">🛠️</div><h3>Custom Quizzes</h3><p class="muted">Create your own questions and adventures.</p></div>
+  <div class="card"><div class="icon">☑️</div><h3>Multiple Correct Answers</h3><p class="muted">Some missions can have more than one correct answer.</p></div>
+</div>
+</section>
+
+<section class="section">
+<h2>🎒 Collectible Packs</h2>
+<div class="grid">
+  <div class="card pack"><span class="tag">COLLECT</span><h3>🪐 Planet Pack</h3><p class="muted">Explore planets, moons, and the solar system.</p><button class="cta" onclick="collect('Planet Pack')">Collect Pack</button></div>
+  <div class="card pack"><span class="tag">COLLECT</span><h3>🦖 Dinosaur Pack</h3><p class="muted">Travel back in time and collect prehistoric Quizits.</p><button class="cta" onclick="collect('Dinosaur Pack')">Collect Pack</button></div>
+  <div class="card pack season"><span class="tag">OCT 1 — NOV 1</span><h3>🎃 Spooky Space Pack</h3><p class="muted">A limited Halloween pack from October 1 through November 1.</p><button class="cta" onclick="collect('Spooky Space Pack')">Collect Pack</button></div>
+</div>
+</section>
+
+<section class="section">
+<h2>🛍️ QuizMart</h2>
+<div class="grid">
+  <div class="card"><div class="icon">🪙</div><h3>Quiz Coins</h3><p class="muted">Use your coins to unlock collectible goodies.</p></div>
+  <div class="card"><div class="icon">🎁</div><h3>Collectible Packs</h3><p class="muted">Build your collection one pack at a time.</p></div>
+  <div class="card"><div class="icon">🔐</div><h3>Locker</h3><p class="muted">Keep your Quizits and packs safe in your personal locker.</p></div>
+</div>
+</section>
+</main>
+<footer>QuizQuest 🚀 • Learn, play, collect, explore.</footer>
+
+<div id="modal" class="modal"><div class="box">
+<button class="close" onclick="closeModal()">×</button><h2 id="modalTitle">QuizQuest</h2><div id="modalBody"></div>
+</div></div>
+
+<script>
+let coins=250, q=0, score=0;
+const questions=[
+["Which planet is known for its rings?",["Saturn","Mars","Venus","Mercury"],0],
+["Which animal is a dinosaur?",["Triceratops","Dolphin","Eagle","Frog"],0],
+["Which object orbits a planet?",["Moon","Galaxy","Nebula","Star"],0]
+];
+function openModal(title,body){document.getElementById('modalTitle').textContent=title;document.getElementById('modalBody').innerHTML=body;document.getElementById('modal').classList.add('show')}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function show(name){openModal(name,`<p>This ${name.toLowerCase()} area is part of your QuizQuest galaxy.</p><button class="cta" onclick="closeModal()">Continue Exploring 🚀</button>`)}
+function startQuiz(){q=0;score=0;ask()}
+function ask(){let x=questions[q];openModal("🚀 Quiz Mission "+(q+1),`<h3>${x[0]}</h3><div class="answers">${x[1].map((a,i)=>`<button onclick="answer(${i})">${a}</button>`).join('')}</div>`)}
+function answer(i){let x=questions[q];if(i===x[2]){score++;coins+=25} q++;if(q<questions.length){ask()}else{document.getElementById('coinCount').textContent=coins;openModal("🌟 Mission Complete!",`<h3>You scored ${score}/${questions.length}!</h3><p>You earned Quiz Coins for your journey.</p><button class="cta" onclick="closeModal()">Back to Galaxy</button>`)}}
+function collect(name){coins=Math.max(0,coins-50);document.getElementById('coinCount').textContent=coins;openModal("🎁 Pack Collected",`<h3>${name}</h3><p>Your pack is now in your Locker! 🗄️</p><button class="cta" onclick="closeModal()">Awesome!</button>`)}
+</script>
+</body>
+</html>
